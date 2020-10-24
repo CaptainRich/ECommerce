@@ -39,6 +39,9 @@ router.get('/:id', (req, res) => {
   
   Product.findOne({
     attributes: [ "id", "product_name", "price", "stock", "category_id" ],
+    where: {
+      id: req.params.id
+    },
     include: [
       {
         model: Category,
@@ -86,7 +89,8 @@ router.post('/', (req, res) => {
       if (req.body.tagIds.length) {
         const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
-            product_id: product_id, tag_id
+            product_id: product_id, 
+            tag_id
           };
         });
         return ProductTag.bulkCreate(productTagIdArr);

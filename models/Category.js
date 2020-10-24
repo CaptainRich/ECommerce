@@ -20,7 +20,10 @@ Category.init(
     // Define the category_name column
     category_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     }
   },
   {

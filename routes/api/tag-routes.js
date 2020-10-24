@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   // Find all tags, including any associated product data
   
   Tag.findAll({
-    attributes: [ "id", "tab_name" ],
+    attributes: [ "id", "tag_name" ],
     include: [
       {
         model: Product,
@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
   // Find a single tag by its `id`, including any associated product data
 
   Tag.findOne({
-    attributes: [ "id", "tab_name" ],
+    attributes: [ "id", "tag_name" ],
     where: {
       id: req.params.id
     },
