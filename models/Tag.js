@@ -20,7 +20,7 @@ Tag.init(
     // Define the category_name column
     tag_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      //allowNull: false
     }
   },
   {

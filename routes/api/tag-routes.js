@@ -1,3 +1,5 @@
+
+// Dependencies
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
@@ -8,9 +10,11 @@ router.get('/', (req, res) => {
   // Find all tags, including any associated product data
   
   Tag.findAll({
+    attributes: [ "id", "tab_name" ],
     include: [
       {
-        model: Product
+        model: Product,
+        attributes: [ "id", "product_name", "price", "stock", "category_id" ]
       }
     ]
   })
@@ -26,16 +30,24 @@ router.get('/:id', (req, res) => {
   // Find a single tag by its `id`, including any associated product data
 
   Tag.findOne({
+    attributes: [ "id", "tab_name" ],
     where: {
       id: req.params.id
     },
     include: [
       {
-        model: Product
+        model: Product,
+        attributes: [ "id", "product_name", "price", "stock", "category_id" ]
       }
     ]
   })
-  .then( dbData => res.json(dbData) )
+  .then( (dbData) => {
+    if( !dbData ) {
+      res.status(404).json( {message: "There was no tag found with the specified id." } );
+      return;
+    }
+    res.json(dbData) 
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -58,16 +70,18 @@ router.post('/', (req, res) => {
 ////////////////////////////////////////////////////////////////////////////////
 router.put('/:id', (req, res) => {
   // Update a tag's name by its `id` value
-  Tag.update(
-    {
-      tag_name: req.body.tag_name
-    },
-    {
+  Tag.update( req.body, {
       where: {
         id: req.params.id
       }
     })
-    .then(dbData => res.json(dbData))
+    .then( (dbData) => {
+      if( !dbData ) {
+        res.status(404).json( { message: "There was no tag found with the specified id." } );
+        return;
+      }
+      res.json(dbData)
+     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -84,7 +98,7 @@ router.delete('/:id', (req, res) => {
   })
   .then(dbData => {
     if (!dbData) {
-      res.status(404).json({ message: 'No Tag found with this id' });
+      res.status(404).json({ message: 'There was no tag found with the specified id.' } );
       return;
     }
     res.json(dbData);
