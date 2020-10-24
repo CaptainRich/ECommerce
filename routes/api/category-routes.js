@@ -96,8 +96,6 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-<<<<<<< HEAD
-=======
   .then(dbData => {
     if (!dbData) {
       res.status(404).json({ message: 'No Category with this id exists.' });
@@ -109,7 +107,6 @@ router.delete('/:id', (req, res) => {
     console.log(err);
     res.status(500).json(err);
   })
->>>>>>> feature/routes
 });
 
 
