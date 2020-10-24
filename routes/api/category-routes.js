@@ -1,3 +1,5 @@
+
+// Dependencies
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
@@ -7,9 +9,11 @@ router.get('/', (req, res) => {
   // Find all categories with their associated Products
 
   Category.findAll({
+    attributes: [ "id", "category_name" ],
     include: [
       {
-        model: Product
+        model: Product,
+        attributes: [ "id", "product_name", "price", "stock", "category_id" ]
       }
     ]
   })
@@ -25,25 +29,63 @@ router.get('/:id', (req, res) => {
   // Find one category by its `id` value, with its associated Products
 
   Category.findOne({
+    attributes: [ "id", "category_name" ],
     where: {
       id: req.params.id
     },
     include: [
       {
-        model: Product
+        model: Product,
+        attributes: [ "id", "product_name", "price", "stock", "category_id" ]
       }
     ]
   })
+  .then( dbData => { 
+    if( !dbData ) {
+      res.status(404).json( {message: "No category with this ID exists." } );
+      return;
+    }
+    res.json(dbData) 
+  } )
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////
 router.post('/', (req, res) => {
-  // create a new category
+  // Create a new category
+  Category.create({
+    category_name: req.body.category_name
+  })
+  .then(dbData => res.json(dbData))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////
 router.put('/:id', (req, res) => {
-  // update a category by its `id` value
+  // Update a category by its `id` value
+  Category.update( req.body, {
+
+      where: {
+        id: req.params.id
+      }
+    })
+    .then( dbData => { 
+      if( !dbData ) {
+        res.status(404).json( {message: "No category with this ID exists." } );
+        return;
+      }
+      res.json(dbData) 
+    } )
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -54,6 +96,20 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
+<<<<<<< HEAD
+=======
+  .then(dbData => {
+    if (!dbData) {
+      res.status(404).json({ message: 'No Category with this id exists.' });
+      return;
+    }
+    res.json(dbData);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+>>>>>>> feature/routes
 });
 
 

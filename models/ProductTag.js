@@ -20,16 +20,16 @@ ProductTag.init(
     // Define the product_id column
     product_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      //allowNull: false,
       references: {
         model: 'product',
         key: 'id'
       }
     },
-    // Define the product_id column
+    // Define the tag_id column
     tag_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      //allowNull: false,
       references: {
           model: 'tag',
           key: 'id'
@@ -41,7 +41,7 @@ ProductTag.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product_tag',
+    modelName: 'ProductTag',
   }
 );
 
