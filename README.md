@@ -34,7 +34,17 @@ GIVEN a functional Express.js API,
 * The NPM package dotenv.
 
 ## ECommerce Logic
-As 
+The models (for tags, products, productTags and categories) are setup in the \models directory.  The associations between these models (and their corresponding tables) are defined in the index.js file in this same directory.
+
+The routes for these models/tables are setup in the \routes directory.  These routes control the data flow to the actual database.
+
+The database is setup using the schema in \db and seeded from \seeds.
+
+Videos showing data modification of the database tables (using Insomnia) can be found in the \Videos folder.  There are four videos shown the various phases of operation:
+* Database setup via the schema and seeding
+* The 'get' and 'create' operations (routes).
+* The 'update' operations (routes).
+* The 'delete' operations (routes).
 
 
 ## Application Screen Shot
