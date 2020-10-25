@@ -4,6 +4,9 @@ const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
+
+// Define the associations between the various tables.
+
 // Products belongsTo Category
 Product.belongsTo(Category, {
   foreignKey: 'category_id'
