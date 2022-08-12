@@ -1,6 +1,6 @@
 # E-commerce Site Back End 
 
-Richard Ay, October 2020
+Richard Ay, October 2020 *(Updated August 2022)*
 
 ## Table of Contents
 * [Project Objective](#project-objective)
@@ -32,8 +32,12 @@ GIVEN a functional Express.js API,
 * The NPM package mysql2.
 * The NPM package sequelize.
 * The NPM package dotenv.
+* Insomnia (for route testing)
 
 ## ECommerce Logic
+
+There is no front-end for this application.  This is just a back-end that can be exercised in "Insomnia".
+
 The models (for tags, products, productTags and categories) are setup in the \models directory.  The associations between these models (and their corresponding tables) are defined in the index.js file in this same directory.
 
 The routes for these models/tables are setup in the \routes directory.  These routes control the data flow to the actual database.
@@ -41,7 +45,7 @@ The routes for these models/tables are setup in the \routes directory.  These ro
 The database is setup using the schema in \db and seeded from \seeds.
 
 Videos showing data modification of the database tables (using Insomnia) can be found in the \Videos folder.  There are four videos shown the various phases of operation:
-* Database setup via the schema and seeding
+* Database setup via the schema and seeding. (Log into MySQL, )
 * The 'get' and 'create' operations (routes).
 * The 'update' operations (routes).
 * The 'delete' operations (routes).
