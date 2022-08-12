@@ -23,7 +23,7 @@ const seedAll = async () => {
   await seedProductTags();
   console.log('\n----- PRODUCT TAGS SEEDED -----\n');
 
-  process.exit(0);
+  process.exit(0);      // Tells node.js to exit synchronously, with an exit code of 0.
 };
 
 
