@@ -96,8 +96,7 @@ router.post('/', (req, res) => {
       // If no product tags, just respond
       res.status(200).json(product);
     })
-    .then((productTagIds) => 
-      res.status(200).json(productTagIds))
+    .then((productTagIds) => res.status(200).json(productTagIds))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
