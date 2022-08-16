@@ -27,6 +27,8 @@ GIVEN a functional Express.js API,
 
 5) When I test API POST, PUT, and DELETE routes in Insomnia Core, then I am able to successfully create, update, and delete data in my database.
 
+6) Insomnia Core data is saved in the repo as a JSON file.
+
 ## Technologies Used
 * The NPM package express.
 * The NPM package mysql2.
@@ -40,7 +42,7 @@ There is no front-end for this application.  This is just a back-end that can be
 
 The models (for tags, products, productTags and categories) are setup in the \models directory.  The associations between these models (and their corresponding tables) are defined in the index.js file in this same directory.
 
-The routes for these models/tables are setup in the \routes directory.  These routes control the data flow to the actual database.
+The routes for these models/tables are setup in the \routes\api directory.  These routes control the data flow to the actual database.
 
 The database is setup using the schema in \db and seeded from \seeds.
 
